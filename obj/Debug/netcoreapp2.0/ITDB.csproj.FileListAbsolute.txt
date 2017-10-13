@@ -1,0 +1,10 @@
+c:\workspace\AspDoNetCore\ITDB\obj\Debug\netcoreapp2.0\ITDB.csproj.CoreCompileInputs.cache
+c:\workspace\AspDoNetCore\ITDB\obj\Debug\netcoreapp2.0\ITDB.AssemblyInfoInputs.cache
+c:\workspace\AspDoNetCore\ITDB\obj\Debug\netcoreapp2.0\ITDB.AssemblyInfo.cs
+c:\workspace\AspDoNetCore\ITDB\bin\Debug\netcoreapp2.0\ITDB.deps.json
+c:\workspace\AspDoNetCore\ITDB\bin\Debug\netcoreapp2.0\ITDB.runtimeconfig.json
+c:\workspace\AspDoNetCore\ITDB\bin\Debug\netcoreapp2.0\ITDB.runtimeconfig.dev.json
+c:\workspace\AspDoNetCore\ITDB\bin\Debug\netcoreapp2.0\ITDB.dll
+c:\workspace\AspDoNetCore\ITDB\bin\Debug\netcoreapp2.0\ITDB.pdb
+c:\workspace\AspDoNetCore\ITDB\obj\Debug\netcoreapp2.0\ITDB.dll
+c:\workspace\AspDoNetCore\ITDB\obj\Debug\netcoreapp2.0\ITDB.pdb
