@@ -91,5 +91,31 @@ namespace ITDB.Controllers
                        };
             return new ObjectResult(FormatResult.Success(list));
         }
+        ///<summary>
+        ///中奖记录
+        ///</summary>
+        [HttpGet("GetLuckyList")]
+        public IActionResult GetLuckyList(request re)
+        {
+            var list = from a in _context.DBPeriods
+                       join b in _context.Goods on a.GoodsID equals b.ID
+                       join c in _context.User on a.LuckyUserID equals c.ID
+                       join d in _context.DBOrderDetail on new { DBTicket=a.LuckyCode.Value, DBPeriodsID=a.ID } equals new { DBTicket=d.DBTicket, DBPeriodsID=d.DBPeriodsID }
+                       join e in _context.OrderDetail on d.OrderDetailID equals e.ID
+                       where a.LuckyUserID == CurrentUserID
+                       select new
+                       {
+                           a.GoodsID,
+                           b.GoodsName,
+                           b.GoodsDetail,
+                           a.NeedNum,
+                           a.PeriodsCode,
+                           c.UserName,
+                           e.DBNum,
+                           a.LuckyCode,
+                           a.OpenTime
+                       };
+            return new ObjectResult(FormatResult.Success(list));
+        }
     }
 }

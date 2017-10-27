@@ -15,7 +15,7 @@ namespace ITDB.Tool
 {
     public class OpenPeriods
     {
-        public const string connectionString = "Server=(local);Database=ITDB;Trusted_Connection=True;MultipleActiveResultSets=true";
+        public const string connectionString = "Server=DESKTOP-KFNAGMD\\SQL2014;Database=ITDB;Trusted_Connection=True;MultipleActiveResultSets=true";
 
         public void WaitOpen(int pid)
         {
