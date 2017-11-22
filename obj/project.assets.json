@@ -12535,23 +12535,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\xianghu\\.nuget\\packages\\": {},
+    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\WorkSpace\\ASP.NET\\ITDB\\ITDB.csproj",
+      "projectUniqueName": "c:\\workspace\\AspDoNetCore\\ITDB\\ITDB.csproj",
       "projectName": "ITDB",
-      "projectPath": "c:\\WorkSpace\\ASP.NET\\ITDB\\ITDB.csproj",
-      "packagesPath": "C:\\Users\\xianghu\\.nuget\\packages\\",
-      "outputPath": "c:\\WorkSpace\\ASP.NET\\ITDB\\obj\\",
+      "projectPath": "c:\\workspace\\AspDoNetCore\\ITDB\\ITDB.csproj",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "c:\\workspace\\AspDoNetCore\\ITDB\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\xianghu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
