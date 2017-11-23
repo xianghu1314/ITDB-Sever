@@ -21,6 +21,9 @@ namespace ITDB.Models
         public DbSet<ShowOrder> ShowOrder { get; set; }
         public DbSet<UserOtherLogin> UserOtherLogin { get; set; }
         public DbSet<ShopCart> ShopCart { get; set; }
+        public DbSet<ConfigureCategory> ConfigureCategory { get; set; }
+        public DbSet<ConfigurePosition> ConfigurePosition { get; set; }
+        public DbSet<ConfigureSlider> ConfigureSlider { get; set; }
 
         public DbSet<TodoItem> TodoItems { get; set; }
 
