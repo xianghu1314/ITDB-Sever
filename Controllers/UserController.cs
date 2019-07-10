@@ -26,7 +26,7 @@ namespace ITDB.Controllers
         public IActionResult GetUserInfo()
         {
             var UserID=CurrentUserID;
-            var item = _context.User.FirstOrDefault(t => t.ID == UserID);
+            var item = _context.Users.FirstOrDefault(t => t.ID == UserID);
             return new ObjectResult(FormatResult.Success(item));
         }
         [HttpGet("token")]
@@ -37,14 +37,14 @@ namespace ITDB.Controllers
                 return BadRequest();
             }
 
-            var user = await _context.User.FirstOrDefaultAsync(t => t.UserPhone == model.UserPhone && t.UserPwd == model.UserPwd.ToMD5());
+            var user = await _context.Users.FirstOrDefaultAsync(t => t.UserPhone == model.UserPhone && t.UserPwd == model.UserPwd.ToMD5());
 
             if (user == null)
             {
                 return BadRequest();
             }
 
-            var token = await GetJwtSecurityToken(user);
+            var token = GetJwtSecurityToken(user);
 
             return new ObjectResult(
                 FormatResult.Success(
@@ -71,7 +71,7 @@ namespace ITDB.Controllers
             {
                 return new ObjectResult(FormatResult.Failure("密码不能为空"));
             }
-            if (_context.User.FirstOrDefault(t => t.UserPhone == item.UserPhone) != null)
+            if (_context.Users.FirstOrDefault(t => t.UserPhone == item.UserPhone) != null)
             {
                 return new ObjectResult(FormatResult.Failure("手机号已被占用"));
             }
@@ -80,7 +80,7 @@ namespace ITDB.Controllers
             string pwd = item.UserPwd;
             item.UserPwd = pwd.ToMD5();
 
-            _context.User.Add(item);
+            _context.Users.Add(item);
             _context.SaveChanges();
 
             return new ObjectResult(item);
@@ -89,7 +89,7 @@ namespace ITDB.Controllers
 
 
 
-        private async Task<JwtSecurityToken> GetJwtSecurityToken(User user)
+        private JwtSecurityToken GetJwtSecurityToken(User user)
         {
             string UnixEpochDate = Math.Round((DateTime.Now.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds).ToString();
             //声明

@@ -4,6 +4,8 @@
 // Purpose: Definition of Class RechargeRecords
 
 using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace ITDB.Models
 {
     /// 充值记录
@@ -16,10 +18,12 @@ namespace ITDB.Models
         /// <summary>
         /// 流水号
         /// </summary>
+        [StringLength(36)]
         public string ChargeCode { get; set; }
         /// <summary>
         /// 充值金额
         /// </summary>
+        [DataType(DataType.Currency)]
         public decimal ChargeMoney { get; set; }
         /// <summary>
         /// 添加时间

@@ -1,23 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using ITDB.Models;
-using Microsoft.AspNetCore.Cors;
-using ITDB.Filter;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using ITDB.Tool;
 
 namespace ITDB
 {
@@ -37,7 +27,7 @@ namespace ITDB
             // services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
             //使用huan'c
             services.AddMemoryCache();
-            services.AddDbContext<DBContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));//persist security info=True;user id=xd;password=fineex.com;MultipleActiveResultSets=True;
+            services.AddDbContext<DBContext>(opt => opt.UseMySql(Configuration.GetConnectionString("MySqlConnection")));//persist security info=True;user id=xd;password=fineex.com;MultipleActiveResultSets=True;
             services.AddCors();
             services.AddMvc(options =>
             {
@@ -88,6 +78,7 @@ namespace ITDB
             //         name: "default",
             //         template: "{controller=Home}/{action=Index}/{id?}");
             // });
+            DbInitializer.Initialize(app.ApplicationServices.GetRequiredService<DBContext>());
         }
     }
 }

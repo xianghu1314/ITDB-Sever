@@ -32,7 +32,7 @@ namespace ITDB.Tool
                         period.IfOpen = true;
                         period.LuckyCode = random.Next(0, period.NeedNum + 1);
                         period.OpenTime = DateTime.Now;
-                        var luckyuser = _context.DBOrderDetail.FirstOrDefault(s => s.DBPeriodsID == period.ID && s.DBTicket == period.LuckyCode);
+                        var luckyuser = _context.DBOrderDetails.FirstOrDefault(s => s.DBPeriodsID == period.ID && s.DBTicket == period.LuckyCode);
                         period.LuckyUserID = luckyuser.UserID;
                         period.Status = 2;//0 进行中 1正在开奖中2开奖成功3开奖失败
                         _context.SaveChanges();

@@ -66,7 +66,7 @@ namespace ITDB.Controllers
         {
             var list = from db in _context.DBPeriods
                        join go in _context.Goods on db.GoodsID equals go.ID
-                       join u in _context.User on db.LuckyUserID equals u.ID into u1
+                       join u in _context.Users on db.LuckyUserID equals u.ID into u1
                        from user in u1.DefaultIfEmpty()
 
                        where db.Status != 0
@@ -99,9 +99,9 @@ namespace ITDB.Controllers
         {
             var list = from a in _context.DBPeriods
                        join b in _context.Goods on a.GoodsID equals b.ID
-                       join c in _context.User on a.LuckyUserID equals c.ID
-                       join d in _context.DBOrderDetail on new { DBTicket=a.LuckyCode.Value, DBPeriodsID=a.ID } equals new { DBTicket=d.DBTicket, DBPeriodsID=d.DBPeriodsID }
-                       join e in _context.OrderDetail on d.OrderDetailID equals e.ID
+                       join c in _context.Users on a.LuckyUserID equals c.ID
+                       join d in _context.DBOrderDetails on new { DBTicket=a.LuckyCode.Value, DBPeriodsID=a.ID } equals new { DBTicket=d.DBTicket, DBPeriodsID=d.DBPeriodsID }
+                       join e in _context.OrderDetails on d.OrderDetailID equals e.ID
                        where a.LuckyUserID == CurrentUserID
                        select new
                        {

@@ -14,7 +14,7 @@ namespace ITDB.Controllers
         [HttpGet("getCategories")]
         public IActionResult getCategories()
         {
-            var list=_context.ConfigureCategory.Where(s=>s.IfShow).OrderByDescending(s=>s.Sort).ToList();
+            var list=_context.ConfigureCategories.Where(s=>s.IfShow).OrderByDescending(s=>s.Sort).ToList();
             return new ObjectResult(FormatResult.Success(list));
         }
         

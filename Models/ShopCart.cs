@@ -4,6 +4,8 @@
 // Purpose: Definition of Class ShopCart
 
 using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace ITDB.Models
 {
     public class ShopCart
@@ -23,6 +25,7 @@ namespace ITDB.Models
         ///<summary>
         ///单价
         ///</summary>
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
         ///<summary>
         ///用户

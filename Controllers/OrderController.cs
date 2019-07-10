@@ -54,7 +54,7 @@ namespace ITDB.Controllers
                 //2.查询地址
                 //3.提交订单
                 //4.发起支付
-                var list = from a in _context.ShopCart
+                var list = from a in _context.ShopCarts
                            where model.ShopCartID.Contains(a.ID)
                            select a;
                 if(list==null||list.Count()==0){
@@ -82,7 +82,7 @@ namespace ITDB.Controllers
                     IpCity = ""
 
                 };
-                _context.Order.Add(order);
+                _context.Orders.Add(order);
                 foreach (var item in list)
                 {
                     OrderDetail orderDetail = new OrderDetail()
@@ -94,7 +94,7 @@ namespace ITDB.Controllers
                         DBPrice = item.Num * item.Price,
                         DBPerPrice = item.Price
                     };
-                    _context.OrderDetail.Add(orderDetail);
+                    _context.OrderDetails.Add(orderDetail);
                     ///获取所有的已参与记录
                     var dBPeriods = _context.DBPeriods.Find(item.DBPeriodsID);
                     if(dBPeriods==null){
@@ -104,7 +104,7 @@ namespace ITDB.Controllers
                         throw new Exception("商品人数已满，请选择下一期夺宝");
                     }
                     //已使用的号
-                    var oldPeriod = _context.DBOrderDetail.Where(s => s.DBPeriodsID == item.DBPeriodsID);
+                    var oldPeriod = _context.DBOrderDetails.Where(s => s.DBPeriodsID == item.DBPeriodsID);
 
                     int[] baseCode = ProduceTicket(dBPeriods.NeedNum);
                     int[] hasCode = oldPeriod.Select(s => s.DBTicket).ToArray();
@@ -122,7 +122,7 @@ namespace ITDB.Controllers
                             DBTicket = overplus[index],
                             UserID = CurrentUserID
                         };
-                        _context.DBOrderDetail.Add(dBOrderDetail);
+                        _context.DBOrderDetails.Add(dBOrderDetail);
                         overplus.RemoveAt(index);
                     }
                     dBPeriods.OverplusNum = dBPeriods.OverplusNum - item.Num;
@@ -135,7 +135,7 @@ namespace ITDB.Controllers
                     }
 
                 }
-                _context.ShopCart.RemoveRange(list);
+                _context.ShopCarts.RemoveRange(list);
                 _context.SaveChanges();
                 return new ObjectResult(FormatResult.Success("提交成功"));
             }

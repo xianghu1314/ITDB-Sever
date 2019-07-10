@@ -4,6 +4,9 @@
 // Purpose: Definition of Class DBPeriods
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ITDB.Models
 {
     /// 夺宝
@@ -28,10 +31,12 @@ namespace ITDB.Models
         /// <summary>
         /// 商品价格(每期价格可能浮动)
         /// </summary>
+        [DataType(DataType.Currency)]
         public decimal GoodsPrice { get; set; }
         /// <summary>
         /// 价格/人次
         /// </summary>
+        [DataType(DataType.Currency)]
         public decimal PerPrice { get; set; }
         /// <summary>
         /// 剩余人次
@@ -40,6 +45,7 @@ namespace ITDB.Models
         /// <summary>
         /// 是否开奖
         /// </summary>
+        
         public bool IfOpen { get; set; }
         /// <summary>
         /// 开奖时间

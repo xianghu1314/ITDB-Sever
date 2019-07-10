@@ -4,6 +4,9 @@
 // Purpose: Definition of Class Goods
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ITDB.Models
 {
     /// 商品表
@@ -16,26 +19,32 @@ namespace ITDB.Models
         /// <summary>
         /// 商品名
         /// </summary>
+        [StringLength(50)]
         public string GoodsName { get; set; }
         /// <summary>
         /// 商品描述
         /// </summary>
+        [StringLength(255)]
         public string GoodsDescribe { get; set; }
         /// <summary>
         /// 商品Logo
         /// </summary>
+        [StringLength(255)]
         public string GoodsLogo2 { get; set; }
         /// <summary>
         /// 商品Logo
         /// </summary>
+        [StringLength(255)]
         public string GoodsLogo { get; set; }
         /// <summary>
         /// 商品价格
         /// </summary>
+        [DataType(DataType.Currency)]
         public decimal GoodPrice { get; set; }
         /// <summary>
         /// 是否显示
         /// </summary>
+        
         public bool IfShow { get; set; }
         /// <summary>
         /// 商品详情

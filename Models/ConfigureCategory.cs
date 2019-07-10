@@ -4,6 +4,9 @@
 // Purpose: Definition of Class Category
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ITDB.Models
 {
     /// <summary>
@@ -18,6 +21,7 @@ namespace ITDB.Models
         /// <summary>
         /// 名称
         /// </summary>
+        [StringLength(50)]
         public string Name { get; set; }
         /// <summary>
         /// 是否显示
@@ -30,10 +34,12 @@ namespace ITDB.Models
         /// <summary>
         /// 参数
         /// </summary>
+        [StringLength(255)]
         public string Data { get; set; }
         /// <summary>
         /// 排序
         /// </summary>
+        [StringLength(255)]
         public string Url { get; set; }
 
     }

@@ -24,7 +24,7 @@ namespace ITDB.Controllers
         {
             try
             {
-                var periods = (from a in _context.DBOrderDetail
+                var periods = (from a in _context.DBOrderDetails
                                where a.UserID == CurrentUserID
                                group a by new { DBPeriodsID = a.DBPeriodsID, UserID = a.UserID } into g
                                select new
@@ -41,9 +41,9 @@ namespace ITDB.Controllers
                            //    join b in _context.OrderDetail on a.DBPeriodsID equals b.DBPeriodsID
                            //    join e in _context.Order on b.OrderID equals e.ID
 
-                           join u in _context.User on c.LuckyUserID equals u.ID into us
+                           join u in _context.Users on c.LuckyUserID equals u.ID into us
                            from user in us.DefaultIfEmpty()
-                           join n in (from a in _context.DBOrderDetail
+                           join n in (from a in _context.DBOrderDetails
                                       group a by new { DBPeriodsID = a.DBPeriodsID, UserID = a.UserID } into g
                                       select new
                                       {
@@ -89,12 +89,12 @@ namespace ITDB.Controllers
         {
             try
             {
-                var list = from a in _context.OrderDetail
+                var list = from a in _context.OrderDetails
                            join c in _context.DBPeriods on a.DBPeriodsID equals c.ID
-                           join d in _context.Order on a.OrderID equals d.ID
+                           join d in _context.Orders on a.OrderID equals d.ID
                            join b in _context.Goods on c.GoodsID equals b.ID
                            let detail = (
-                               from a1 in _context.DBOrderDetail
+                               from a1 in _context.DBOrderDetails
                                where a1.OrderDetailID == a.ID
                                select a1.DBTicket
                                )

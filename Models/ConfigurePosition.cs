@@ -4,6 +4,8 @@
 // Purpose: Definition of Class Category
 
 using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace ITDB.Models
 {
     /// <summary>
@@ -18,6 +20,7 @@ namespace ITDB.Models
         /// <summary>
         /// 名称
         /// </summary>
+        [StringLength(50)]
         public string Position { get; set; }
         
 

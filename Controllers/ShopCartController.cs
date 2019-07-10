@@ -18,7 +18,7 @@ namespace ITDB.Controllers
         [HttpGet("getShopCart")]
         public IActionResult getShopCart()
         {
-            var list = from a in _context.ShopCart
+            var list = from a in _context.ShopCarts
                        join b in _context.Goods on a.GoodsID equals b.ID
                        join c in _context.DBPeriods on a.DBPeriodsID equals c.ID
                        select new
@@ -38,7 +38,7 @@ namespace ITDB.Controllers
         [HttpPost("join")]
         public IActionResult join([FromBody] ShopCart model)
         {
-            var ifhave = _context.ShopCart.FirstOrDefault(s => s.DBPeriodsID == model.DBPeriodsID && s.UserID == s.UserID);
+            var ifhave = _context.ShopCarts.FirstOrDefault(s => s.DBPeriodsID == model.DBPeriodsID && s.UserID == s.UserID);
             var dbPeriods = _context.DBPeriods.Find(model.DBPeriodsID);
 
             if (ifhave != null)
@@ -57,7 +57,7 @@ namespace ITDB.Controllers
                 {
                     return new ObjectResult(FormatResult.Failure("超过剩余次数，请刷新重试！"));
                 }
-                _context.ShopCart.Add(model);
+                _context.ShopCarts.Add(model);
             }
 
             _context.SaveChanges();
@@ -66,7 +66,7 @@ namespace ITDB.Controllers
         [HttpPost("add")]
         public IActionResult add([FromBody] ShopCart model)
         {
-            var ifhave = _context.ShopCart.Find(model.ID);
+            var ifhave = _context.ShopCarts.Find(model.ID);
             var dbPeriods = _context.DBPeriods.Find(ifhave.DBPeriodsID);
             if (ifhave != null)
             {
@@ -82,7 +82,7 @@ namespace ITDB.Controllers
         [HttpPost("sub")]
         public IActionResult sub([FromBody] ShopCart model)
         {
-            var ifhave = _context.ShopCart.Find(model.ID);
+            var ifhave = _context.ShopCarts.Find(model.ID);
             if (ifhave != null && ifhave.Num - model.Num > 0)
             {
                 ifhave.Num--;
@@ -93,7 +93,7 @@ namespace ITDB.Controllers
         [HttpPost("delete")]
         public IActionResult delete([FromBody] IEnumerable<ShopCart> model)
         {
-            _context.ShopCart.RemoveRange(model);
+            _context.ShopCarts.RemoveRange(model);
             _context.SaveChanges();
             return new ObjectResult(FormatResult.Success("删除成功"));
         }

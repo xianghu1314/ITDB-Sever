@@ -4,6 +4,8 @@
 // Purpose: Definition of Class OrderDetail
 
 using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace ITDB.Models
 {
     /// 订单详细
@@ -28,10 +30,12 @@ namespace ITDB.Models
         /// <summary>
         /// 价格/人次
         /// </summary>
+        [DataType(DataType.Currency)]
         public decimal DBPrice { get; set; }
         /// <summary>
         /// 单价
         /// </summary>
+        [DataType(DataType.Currency)]
         public decimal DBPerPrice { get; set; }
 
     }

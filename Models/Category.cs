@@ -4,6 +4,8 @@
 // Purpose: Definition of Class Category
 
 using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace ITDB.Models
 {
     /// 商品分类
@@ -20,14 +22,20 @@ namespace ITDB.Models
         /// <summary>
         /// Logo
         /// </summary>
+        [StringLength(255)]
+        [Required]
         public string Logo { get; set; }  
         /// <summary>
         /// Logo
         /// </summary>
+        [StringLength(255)]
+        [Required]
         public string BannerLogo { get; set; }
         /// <summary>
         /// 栏目名
         /// </summary>
+        [StringLength(50)]
+        [Required]
         public string Name { get; set; }
         /// <summary>
         /// 排序

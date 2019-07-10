@@ -1,0 +1,14 @@
+/WorkSpace/ASPDOTNET/ITDB/bin/Debug/netcoreapp2.1/ITDB.deps.json
+/WorkSpace/ASPDOTNET/ITDB/bin/Debug/netcoreapp2.1/ITDB.runtimeconfig.json
+/WorkSpace/ASPDOTNET/ITDB/bin/Debug/netcoreapp2.1/ITDB.runtimeconfig.dev.json
+/WorkSpace/ASPDOTNET/ITDB/bin/Debug/netcoreapp2.1/ITDB.dll
+/WorkSpace/ASPDOTNET/ITDB/bin/Debug/netcoreapp2.1/ITDB.pdb
+/WorkSpace/ASPDOTNET/ITDB/obj/Debug/netcoreapp2.1/ITDB.csprojAssemblyReference.cache
+/WorkSpace/ASPDOTNET/ITDB/obj/Debug/netcoreapp2.1/ITDB.csproj.CoreCompileInputs.cache
+/WorkSpace/ASPDOTNET/ITDB/obj/Debug/netcoreapp2.1/ITDB.RazorAssemblyInfo.cache
+/WorkSpace/ASPDOTNET/ITDB/obj/Debug/netcoreapp2.1/ITDB.RazorAssemblyInfo.cs
+/WorkSpace/ASPDOTNET/ITDB/obj/Debug/netcoreapp2.1/ITDB.AssemblyInfoInputs.cache
+/WorkSpace/ASPDOTNET/ITDB/obj/Debug/netcoreapp2.1/ITDB.AssemblyInfo.cs
+/WorkSpace/ASPDOTNET/ITDB/obj/Debug/netcoreapp2.1/ITDB.RazorTargetAssemblyInfo.cache
+/WorkSpace/ASPDOTNET/ITDB/obj/Debug/netcoreapp2.1/ITDB.dll
+/WorkSpace/ASPDOTNET/ITDB/obj/Debug/netcoreapp2.1/ITDB.pdb

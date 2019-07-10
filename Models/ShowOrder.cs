@@ -4,6 +4,8 @@
 // Purpose: Definition of Class ShowOrder
 
 using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace ITDB.Models
 {
     /// 晒单
@@ -20,30 +22,37 @@ namespace ITDB.Models
         /// <summary>
         /// 图片
         /// </summary>
+        [StringLength(255)]
         public string img1 { get; set; }
         /// <summary>
         /// 图片
         /// </summary>
+        [StringLength(255)]
         public string img6 { get; set; }
         /// <summary>
         /// 图片
         /// </summary>
+        [StringLength(255)]
         public string img5 { get; set; }
         /// <summary>
         /// 图片
         /// </summary>
+        [StringLength(255)]
         public string img4 { get; set; }
         /// <summary>
         /// 图片
         /// </summary>
+        [StringLength(255)]
         public string img3 { get; set; }
         /// <summary>
         /// 图片
         /// </summary>
+        [StringLength(255)]
         public string img2 { get; set; }
         /// <summary>
         /// 标题
         /// </summary>
+        [StringLength(255)]
         public string Title { get; set; }
         /// <summary>
         /// 内容
