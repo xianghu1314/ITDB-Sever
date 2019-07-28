@@ -4,6 +4,7 @@
 // Purpose: Definition of Class ShowOrder
 
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ITDB.Models
@@ -18,53 +19,28 @@ namespace ITDB.Models
         /// <summary>
         /// 商品本期ID
         /// </summary>
+        [Required]
         public int DBPeriodsID { get; set; }
         /// <summary>
-        /// 图片
+        /// 图片s
         /// </summary>
-        [StringLength(255)]
-        public string img1 { get; set; }
-        /// <summary>
-        /// 图片
-        /// </summary>
-        [StringLength(255)]
-        public string img6 { get; set; }
-        /// <summary>
-        /// 图片
-        /// </summary>
-        [StringLength(255)]
-        public string img5 { get; set; }
-        /// <summary>
-        /// 图片
-        /// </summary>
-        [StringLength(255)]
-        public string img4 { get; set; }
-        /// <summary>
-        /// 图片
-        /// </summary>
-        [StringLength(255)]
-        public string img3 { get; set; }
-        /// <summary>
-        /// 图片
-        /// </summary>
-        [StringLength(255)]
-        public string img2 { get; set; }
-        /// <summary>
-        /// 标题
-        /// </summary>
-        [StringLength(255)]
-        public string Title { get; set; }
+        [StringLength(1000)]
+        public string images { get; set; }
         /// <summary>
         /// 内容
         /// </summary>
+        [Required]
         public string content { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
+        [Required]
+        [DefaultValue("CURRENT_TIMESTAMP")]
         public DateTime CreateTime { get; set; }
         /// <summary>
         /// 用户
         /// </summary>
+        [Required]
         public int UserID { get; set; }
 
     }

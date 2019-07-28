@@ -24,9 +24,6 @@ namespace ITDB.Models
         public DbSet<ConfigureCategory> ConfigureCategories { get; set; }
         public DbSet<ConfigurePosition> ConfigurePositions { get; set; }
         public DbSet<ConfigureSlider> ConfigureSliders { get; set; }
-
-        public DbSet<TodoItem> TodoItems { get; set; }
-
         
     }
     

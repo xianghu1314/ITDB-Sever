@@ -4,6 +4,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="wwwroot\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\dist\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="$(AspNetCoreAllRuntimeFrameworkVersion)"><IsImplicitlyDefined>true</IsImplicitlyDefined>
@@ -23,5 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Tool\InitDB.cs" />
+    <Compile Remove="Models\TodoItem.cs" />
+    <Compile Remove="Controllers\TodoController.cs" />
   </ItemGroup>
 </Project>

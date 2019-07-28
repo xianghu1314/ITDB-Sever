@@ -20,26 +20,31 @@ namespace ITDB.Models
         /// 商品名
         /// </summary>
         [StringLength(50)]
+        [Required]
         public string GoodsName { get; set; }
         /// <summary>
         /// 商品描述
         /// </summary>
         [StringLength(255)]
+        [Required]
         public string GoodsDescribe { get; set; }
         /// <summary>
-        /// 商品Logo
+        /// 商品Banner
         /// </summary>
         [StringLength(255)]
+        [Required]
         public string GoodsLogo2 { get; set; }
         /// <summary>
         /// 商品Logo
         /// </summary>
         [StringLength(255)]
+        [Required]
         public string GoodsLogo { get; set; }
         /// <summary>
         /// 商品价格
         /// </summary>
         [DataType(DataType.Currency)]
+        [Required]
         public decimal GoodPrice { get; set; }
         /// <summary>
         /// 是否显示

@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using ITDB.Tool;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace ITDB
 {
@@ -64,6 +66,13 @@ namespace ITDB
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
+            defaultFilesOptions.DefaultFileNames.Clear();
+            defaultFilesOptions.DefaultFileNames.Add("index.html");
+            app.UseDefaultFiles(defaultFilesOptions);
+
+            app.UseStaticFiles();
             //http重定向https
             // var options = new RewriteOptions().AddRedirectToHttps();
             // app.UseRewriter(options);

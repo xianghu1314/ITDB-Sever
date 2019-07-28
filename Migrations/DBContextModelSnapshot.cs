@@ -22,11 +22,16 @@ namespace ITDB.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BannerLogo");
+                    b.Property<string>("BannerLogo")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("Logo");
+                    b.Property<string>("Logo")
+                        .IsRequired()
+                        .HasMaxLength(255);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<int?>("ParentCategoryID");
 
@@ -43,11 +48,13 @@ namespace ITDB.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Data")
+                        .IsRequired()
                         .HasMaxLength(255);
 
                     b.Property<bool>("IfShow");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<int>("Sort");
@@ -84,6 +91,7 @@ namespace ITDB.Migrations
                         .HasMaxLength(255);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<int>("PositionID");
@@ -164,17 +172,21 @@ namespace ITDB.Migrations
                     b.Property<decimal>("GoodPrice");
 
                     b.Property<string>("GoodsDescribe")
+                        .IsRequired()
                         .HasMaxLength(255);
 
                     b.Property<string>("GoodsDetail");
 
                     b.Property<string>("GoodsLogo")
+                        .IsRequired()
                         .HasMaxLength(255);
 
                     b.Property<string>("GoodsLogo2")
+                        .IsRequired()
                         .HasMaxLength(255);
 
                     b.Property<string>("GoodsName")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<bool>("IfShow");
@@ -192,12 +204,15 @@ namespace ITDB.Migrations
                     b.Property<bool>("IfPay");
 
                     b.Property<string>("IpAddress")
+                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<string>("IpCity")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("OrderCode")
+                        .IsRequired()
                         .HasMaxLength(36);
 
                     b.Property<int>("OrderStatus");
@@ -205,15 +220,18 @@ namespace ITDB.Migrations
                     b.Property<DateTime?>("PayTime");
 
                     b.Property<string>("PostAddress")
+                        .IsRequired()
                         .HasMaxLength(255);
 
                     b.Property<string>("PostDetailAddress")
                         .HasMaxLength(255);
 
                     b.Property<string>("PostUserName")
+                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<string>("PostUserPhone")
+                        .IsRequired()
                         .HasMaxLength(11);
 
                     b.Property<DateTime>("SubmitTime");
@@ -253,6 +271,7 @@ namespace ITDB.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ChargeCode")
+                        .IsRequired()
                         .HasMaxLength(36);
 
                     b.Property<decimal>("ChargeMoney");
@@ -272,6 +291,7 @@ namespace ITDB.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasMaxLength(255);
 
                     b.Property<string>("DetailAddress")
@@ -282,9 +302,11 @@ namespace ITDB.Migrations
                     b.Property<int>("UserID");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("UserPhone")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.HasKey("ID");
@@ -321,48 +343,17 @@ namespace ITDB.Migrations
 
                     b.Property<int>("DBPeriodsID");
 
-                    b.Property<string>("Title")
-                        .HasMaxLength(255);
-
                     b.Property<int>("UserID");
 
-                    b.Property<string>("content");
+                    b.Property<string>("content")
+                        .IsRequired();
 
-                    b.Property<string>("img1")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("img2")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("img3")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("img4")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("img5")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("img6")
-                        .HasMaxLength(255);
+                    b.Property<string>("images")
+                        .HasMaxLength(1000);
 
                     b.HasKey("ID");
 
                     b.ToTable("ShowOrders");
-                });
-
-            modelBuilder.Entity("ITDB.Models.TodoItem", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsComplete");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TodoItems");
                 });
 
             modelBuilder.Entity("ITDB.Models.User", b =>
@@ -378,12 +369,15 @@ namespace ITDB.Migrations
                         .HasMaxLength(255);
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("UserPhone")
+                        .IsRequired()
                         .HasMaxLength(11);
 
                     b.Property<string>("UserPwd")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.HasKey("ID");
@@ -411,6 +405,7 @@ namespace ITDB.Migrations
                         .HasMaxLength(255);
 
                     b.Property<string>("nickname")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.HasKey("ID");

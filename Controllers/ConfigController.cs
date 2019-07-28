@@ -17,6 +17,11 @@ namespace ITDB.Controllers
             var list=_context.ConfigureCategories.Where(s=>s.IfShow).OrderByDescending(s=>s.Sort).ToList();
             return new ObjectResult(FormatResult.Success(list));
         }
-        
+        [HttpGet("getSliders")]
+        public IActionResult getSliders()
+        {
+            var list = _context.ConfigureSliders.Where(s => s.IfShow).OrderByDescending(s => s.Sort).ToList();
+            return new ObjectResult(FormatResult.Success(list));
+        }
     }
 }

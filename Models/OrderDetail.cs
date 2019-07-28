@@ -18,24 +18,29 @@ namespace ITDB.Models
         /// <summary>
         /// 订单ID
         /// </summary>
+        [Required]
         public Guid OrderID { get; set; }
         /// <summary>
         /// 商品本期ID
         /// </summary>
+        [Required]
         public int DBPeriodsID { get; set; }
         /// <summary>
         /// 购买期数
         /// </summary>
+        [Required]
         public int DBNum { get; set; }
         /// <summary>
         /// 价格/人次
         /// </summary>
         [DataType(DataType.Currency)]
+        [Required]
         public decimal DBPrice { get; set; }
         /// <summary>
         /// 单价
         /// </summary>
         [DataType(DataType.Currency)]
+        [Required]
         public decimal DBPerPrice { get; set; }
 
     }

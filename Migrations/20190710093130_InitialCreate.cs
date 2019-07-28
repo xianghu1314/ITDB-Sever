@@ -15,9 +15,9 @@ namespace ITDB.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ParentCategoryID = table.Column<int>(nullable: true),
-                    Logo = table.Column<string>(nullable: true),
-                    BannerLogo = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
+                    Logo = table.Column<string>(maxLength: 255, nullable: false),
+                    BannerLogo = table.Column<string>(maxLength: 255, nullable: false),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
                     Sort = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

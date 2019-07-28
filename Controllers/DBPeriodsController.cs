@@ -40,6 +40,27 @@ namespace ITDB.Controllers
 
             return new ObjectResult(FormatResult.Success(item));
         }
+        [HttpGet("GetDBPeriods")]
+        public IActionResult GetDBPeriods(GetDBPeriodsRequest m)
+        {
+            var list = (from db in _context.DBPeriods
+                       join go in _context.Goods on db.GoodsID equals go.ID
+                        where m.CategoryId == 0 || go.CategoryID == m.CategoryId
+                        select new
+                       {
+                           db.ID,
+                           db.GoodsID,
+                           db.GoodsPrice,
+                           db.NeedNum,
+                           db.OverplusNum,
+                           db.PeriodsCode,
+                           db.PerPrice,
+                           go.GoodsName,
+                           go.GoodsLogo,
+                           go.GoodsDescribe
+                       }).Take(m.PageSize).Skip(m.PageIndex).ToList();
+            return new ObjectResult(FormatResult.Success(list));
+        }
         [HttpGet("GetDBPeriodsByCID")]
         public IActionResult GetDBPeriodsByCID(int cid)
         {
@@ -61,6 +82,11 @@ namespace ITDB.Controllers
                        };
             return new ObjectResult(FormatResult.Success(list));
         }
+        /// <summary>
+        /// 获取最新中奖
+        /// </summary>
+        /// <param name="re"></param>
+        /// <returns></returns>
         [HttpGet("GetNewList")]
         public IActionResult GetNewList(request re)
         {
@@ -92,7 +118,7 @@ namespace ITDB.Controllers
             return new ObjectResult(FormatResult.Success(list));
         }
         ///<summary>
-        ///中奖记录
+        ///我的中奖记录
         ///</summary>
         [HttpGet("GetLuckyList")]
         public IActionResult GetLuckyList(request re)

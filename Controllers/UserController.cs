@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ITDB.Models.Custom;
 
 namespace ITDB.Controllers
 {
@@ -30,7 +31,7 @@ namespace ITDB.Controllers
             return new ObjectResult(FormatResult.Success(item));
         }
         [HttpGet("token")]
-        public async Task<IActionResult> Token(User model)
+        public async Task<IActionResult> Token(UserLoginRequest model)
         {
             if (!ModelState.IsValid)
             {
@@ -41,7 +42,7 @@ namespace ITDB.Controllers
 
             if (user == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             var token = GetJwtSecurityToken(user);
@@ -77,6 +78,8 @@ namespace ITDB.Controllers
             }
             item.UserBalance = 0;
             item.Status = true;
+            item.UserLogo = "https://s1.mi.com/m/images/m/default.png";
+            item.UserName = item.UserPhone.Substring(0,2)+"****"+ item.UserPhone.Substring(7,10);
             string pwd = item.UserPwd;
             item.UserPwd = pwd.ToMD5();
 

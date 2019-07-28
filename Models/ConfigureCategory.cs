@@ -4,6 +4,7 @@
 // Purpose: Definition of Class Category
 
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,22 +23,28 @@ namespace ITDB.Models
         /// 名称
         /// </summary>
         [StringLength(50)]
+        [Required]
         public string Name { get; set; }
         /// <summary>
         /// 是否显示
         /// </summary>
-        public bool IfShow { get; set; }  
+        [DefaultValue(false)]
+        [Required]
+        public bool IfShow { get; set; }
         /// <summary>
         /// 排序
         /// </summary>
+        [DefaultValue(0)]
+        [Required]
         public int Sort { get; set; }
         /// <summary>
-        /// 参数
+        /// 参数【分类ID或者其他】
         /// </summary>
         [StringLength(255)]
+        [Required]
         public string Data { get; set; }
         /// <summary>
-        /// 排序
+        /// 连接 跳转到url
         /// </summary>
         [StringLength(255)]
         public string Url { get; set; }

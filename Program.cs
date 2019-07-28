@@ -16,7 +16,8 @@ namespace ITDB {
 
         public static IWebHost BuildWebHost (string[] args) =>
             WebHost.CreateDefaultBuilder (args)
-            .UseDefaultServiceProvider (options => {
+            .UseDefaultServiceProvider(options =>
+            {
                 options.ValidateScopes = false;
             })
             .UseStartup<Startup> ()

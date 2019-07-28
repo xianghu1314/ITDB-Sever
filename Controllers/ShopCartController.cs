@@ -38,7 +38,7 @@ namespace ITDB.Controllers
         [HttpPost("join")]
         public IActionResult join([FromBody] ShopCart model)
         {
-            var ifhave = _context.ShopCarts.FirstOrDefault(s => s.DBPeriodsID == model.DBPeriodsID && s.UserID == s.UserID);
+            var ifhave = _context.ShopCarts.FirstOrDefault(s => s.DBPeriodsID == model.DBPeriodsID && s.UserID == CurrentUserID);
             var dbPeriods = _context.DBPeriods.Find(model.DBPeriodsID);
 
             if (ifhave != null)

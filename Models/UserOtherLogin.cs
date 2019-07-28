@@ -17,6 +17,7 @@ namespace ITDB.Models
         /// <summary>
         /// 关联用户ID
         /// </summary>
+        [Required]
         public int UserID { get; set; }
         /// <summary>
         /// </summary>
@@ -35,6 +36,7 @@ namespace ITDB.Models
         /// 昵称
         /// </summary>
         [StringLength(50)]
+        [Required]
         public string nickname { get; set; }
         /// <summary>
         /// 账户

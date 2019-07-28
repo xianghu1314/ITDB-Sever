@@ -24,12 +24,11 @@ namespace ITDB.Models
         /// </summary>
         [StringLength(255)]
         [Required]
-        public string Logo { get; set; }  
+        public string Logo { get; set; }
         /// <summary>
-        /// Logo
+        /// BannerLogo
         /// </summary>
         [StringLength(255)]
-        [Required]
         public string BannerLogo { get; set; }
         /// <summary>
         /// 栏目名

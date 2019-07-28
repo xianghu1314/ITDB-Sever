@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using ITDB.Models;
 using System.Linq;
+using ITDB.Models.Custom;
 
 namespace ITDB.Controllers
 {
@@ -12,17 +13,15 @@ namespace ITDB.Controllers
             
         }
         [HttpGet("GetGoods")]
-        public IActionResult GetGoods()
+        public IActionResult GetGoods(request _params)
         {
-            var list=_context.Categories.OrderByDescending(s=>s.Sort).ToList();
+            var list=_context.Goods.OrderByDescending(s=>s.CreateTime).Skip(_params.PageIndex).Take(_params.PageIndex).ToList();
             return new ObjectResult(FormatResult.Success(list));
         }
         [HttpGet("{id}",Name="GetGetGoodsByID")]
         public IActionResult GetGoodsByID(int id)
         {
-            var current=_context.Categories.FirstOrDefault(a=>a.ID==id);
-            var list=_context.Categories.Where(s=>s.ID==current.ParentCategoryID).Union(_context.Categories.Where(s=>s.ParentCategoryID==current.ParentCategoryID).OrderByDescending(s=>s.Sort));
-            list.FirstOrDefault(s=>s.ID==current.ParentCategoryID).Name="全部";
+            var list = _context.Goods.Find(id);
             return new ObjectResult(FormatResult.Success(list));
         }
     }
