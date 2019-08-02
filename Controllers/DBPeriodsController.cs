@@ -92,8 +92,7 @@ namespace ITDB.Controllers
         {
             var list = from db in _context.DBPeriods
                        join go in _context.Goods on db.GoodsID equals go.ID
-                       join u in _context.Users on db.LuckyUserID equals u.ID into u1
-                       from user in u1.DefaultIfEmpty()
+                       join u in _context.Users on db.LuckyUserID equals u.ID into u1 from user in u1.DefaultIfEmpty()
 
                        where db.Status != 0
                        select new
@@ -131,9 +130,13 @@ namespace ITDB.Controllers
                        where a.LuckyUserID == CurrentUserID
                        select new
                        {
+                           a.ID,
+                           a.OverplusNum,
                            a.GoodsID,
                            b.GoodsName,
-                           b.GoodsDetail,
+                           b.GoodsDescribe,
+                           b.GoodPrice,
+                           b.GoodsLogo,
                            a.NeedNum,
                            a.PeriodsCode,
                            c.UserName,

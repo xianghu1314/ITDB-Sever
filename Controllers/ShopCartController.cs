@@ -15,8 +15,23 @@ namespace ITDB.Controllers
         public ShopCartController(DBContext context) : base(context)
         {
         }
-        [HttpGet("getShopCart")]
-        public IActionResult getShopCart()
+        [HttpGet("GetShopCartNum")]
+        public IActionResult GetShopCartNum([FromQuery]int pid)
+        {
+            if (pid == 0)
+            {
+                var Num = _context.ShopCarts.Count();
+                return new ObjectResult(FormatResult.Success(Num));
+            }
+            else
+            {
+                var Num = _context.ShopCarts.Where(s => s.DBPeriodsID == pid).Sum(s => s.Num);
+                return new ObjectResult(FormatResult.Success(Num));
+            }
+            
+        }
+        [HttpGet("GetShopCart")]
+        public IActionResult GetShopCart()
         {
             var list = from a in _context.ShopCarts
                        join b in _context.Goods on a.GoodsID equals b.ID
@@ -35,8 +50,10 @@ namespace ITDB.Controllers
                        };
             return new ObjectResult(FormatResult.Success(list));
         }
+
+        
         [HttpPost("join")]
-        public IActionResult join([FromBody] ShopCart model)
+        public IActionResult Join([FromBody] ShopCart model)
         {
             var ifhave = _context.ShopCarts.FirstOrDefault(s => s.DBPeriodsID == model.DBPeriodsID && s.UserID == CurrentUserID);
             var dbPeriods = _context.DBPeriods.Find(model.DBPeriodsID);
@@ -64,7 +81,7 @@ namespace ITDB.Controllers
             return new ObjectResult(FormatResult.Success("添加成功"));
         }
         [HttpPost("add")]
-        public IActionResult add([FromBody] ShopCart model)
+        public IActionResult Add([FromBody] ShopCart model)
         {
             var ifhave = _context.ShopCarts.Find(model.ID);
             var dbPeriods = _context.DBPeriods.Find(ifhave.DBPeriodsID);
@@ -80,7 +97,7 @@ namespace ITDB.Controllers
             return new ObjectResult(FormatResult.Success("操作成功"));
         }
         [HttpPost("sub")]
-        public IActionResult sub([FromBody] ShopCart model)
+        public IActionResult Sub([FromBody] ShopCart model)
         {
             var ifhave = _context.ShopCarts.Find(model.ID);
             if (ifhave != null && ifhave.Num - model.Num > 0)
@@ -91,7 +108,7 @@ namespace ITDB.Controllers
             return new ObjectResult(FormatResult.Success("操作成功"));
         }
         [HttpPost("delete")]
-        public IActionResult delete([FromBody] IEnumerable<ShopCart> model)
+        public IActionResult Delete([FromBody] IEnumerable<ShopCart> model)
         {
             _context.ShopCarts.RemoveRange(model);
             _context.SaveChanges();

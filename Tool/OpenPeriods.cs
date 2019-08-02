@@ -15,15 +15,17 @@ namespace ITDB.Tool
 {
     public class OpenPeriods
     {
-        public const string connectionString = "Server=DESKTOP-KFNAGMD\\SQL2014;Database=ITDB;Trusted_Connection=True;MultipleActiveResultSets=true";
-
+        protected string ConnectionString { get; set; }
+        public OpenPeriods() {
+            ConnectionString = Environment.GetEnvironmentVariable("MySqlConnection");
+        }
         public void WaitOpen(int pid)
         {
             Task task = new Task(() =>
             {
                 //等待10分钟
-                Thread.Sleep(10 * 1000 * 60);
-                using (DBContext _context = new DBContext(new DbContextOptionsBuilder<DBContext>(new DbContextOptions<DBContext>()).UseSqlServer(connectionString).Options))//ConnectionStrings->DefaultConnection
+                Thread.Sleep(10);
+                using (DBContext _context = new DBContext(new DbContextOptionsBuilder<DBContext>(new DbContextOptions<DBContext>()).UseMySql(ConnectionString).Options))//ConnectionStrings->DefaultConnection
                 {
                     var period = _context.DBPeriods.Find(pid);
                     try
@@ -37,9 +39,9 @@ namespace ITDB.Tool
                         period.Status = 2;//0 进行中 1正在开奖中2开奖成功3开奖失败
                         _context.SaveChanges();
                     }
-                    catch (System.Exception)
+                    catch (System.Exception e)
                     {
-
+                        Console.WriteLine("开奖失败："+e.Message);
                         period.Status = 3;//0 进行中 1正在开奖中2开奖成功3开奖失败
                         _context.SaveChanges();
                     }

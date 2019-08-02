@@ -5,7 +5,6 @@ using System.Linq;
 using ITDB.Models.Custom;
 using System;
 using Microsoft.AspNetCore.Authorization;
-using ITDB.Tool;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace ITDB.Controllers
@@ -131,27 +130,32 @@ namespace ITDB.Controllers
                         var overplus = baseCode.Except(hasCode).ToList();
 
                         Random random = new Random();
+                        List<DBOrderDetail> dBOrderDetails = new List<DBOrderDetail>();
                         for (int i = 0; i < item.Num; i++)
                         {
                             int index = random.Next(0, overplus.Count);//0到length-1
-                            DBOrderDetail dBOrderDetail = new DBOrderDetail()
+                            dBOrderDetails.Add(new DBOrderDetail()
                             {
                                 ID = Guid.NewGuid(),
                                 OrderDetailID = orderDetail.ID,
                                 DBPeriodsID = item.DBPeriodsID,
                                 DBTicket = overplus[index],
                                 UserID = CurrentUserID
-                            };
-                            _context.DBOrderDetails.Add(dBOrderDetail);
+                            });
                             overplus.RemoveAt(index);
                         }
+                        _context.DBOrderDetails.AddRange(dBOrderDetails);
                         dBPeriods.OverplusNum = dBPeriods.OverplusNum - item.Num;
-                        if (dBPeriods.OverplusNum == 0)
+                        //如果是余额支付直接开奖
+                        if (model.PayMode == 0)
                         {
-                            dBPeriods.WaitOpenTime = DateTime.Now.AddMinutes(10);
-                            dBPeriods.Status = 1;//0 进行中 1正在开奖中2开奖成功3开奖失败
-                            OpenPeriods waitopen = new OpenPeriods();
-                            waitopen.WaitOpen(dBPeriods.ID);
+                            if (dBPeriods.OverplusNum == 0)
+                            {
+                                dBPeriods.WaitOpenTime = DateTime.Now.AddMinutes(10);
+                                dBPeriods.Status = 1;//0 进行中 1正在开奖中2开奖成功3开奖失败
+                                //OpenPeriods waitopen = new OpenPeriods();
+                                //waitopen.WaitOpen(dBPeriods.ID);
+                            }
                         }
 
                     }
@@ -186,6 +190,19 @@ namespace ITDB.Controllers
                 t[i] = i + 1;
             }
             return t;
+        }
+
+        [HttpPost("PayCallBack")]
+        public IActionResult PayCallBack([FromBody]SubmitOrder model)
+        {
+            //if (dBPeriods.OverplusNum == 0)
+            //{
+            //    dBPeriods.WaitOpenTime = DateTime.Now.AddMinutes(10);
+            //    dBPeriods.Status = 1;//0 进行中 1正在开奖中2开奖成功3开奖失败
+            //    OpenPeriods waitopen = new OpenPeriods();
+            //    waitopen.WaitOpen(dBPeriods.ID);
+            //}
+            return new ObjectResult(FormatResult.Failure("no imp..."));
         }
     }
 }

@@ -7,6 +7,7 @@
     "ITDB": {
       "commandName": "Project",
       "environmentVariables": {
+        "MySqlConnection": "Server=localhost;database=itdb;uid=root;pwd=123456;SslMode=None;TreatTinyAsBoolean=true",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://192.168.1.120:5000"

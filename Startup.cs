@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using ITDB.Tool;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ITDB
 {
@@ -29,7 +31,8 @@ namespace ITDB
             // services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
             //使用huan'c
             services.AddMemoryCache();
-            services.AddDbContext<DBContext>(opt => opt.UseMySql(Configuration.GetConnectionString("MySqlConnection")));//persist security info=True;user id=xd;password=fineex.com;MultipleActiveResultSets=True;
+            //services.AddDbContext<DBContext>(opt => opt.UseMySql(Configuration.GetConnectionString("MySqlConnection")));//persist security info=True;user id=xd;password=fineex.com;MultipleActiveResultSets=True;
+            services.AddDbContext<DBContext>(opt => opt.UseMySql(Environment.GetEnvironmentVariable("MySqlConnection")));//persist security info=True;user id=xd;password=fineex.com;MultipleActiveResultSets=True;
             services.AddCors();
             services.AddMvc(options =>
             {
@@ -49,14 +52,22 @@ namespace ITDB
                     ValidIssuer = "issuer"
                 };
                 // options.Configuration = new OpenIdConnectConfiguration(); 
-            });  
-            
-            
+            });
+
+
             //启用https
             // services.Configure<MvcOptions>(options =>
             // {
             //     options.Filters.Add(new RequireHttpsAttribute());
             // });
+            //注册简单的定时任务执行
+            services.AddSingleton<Microsoft.Extensions.Hosting.IHostedService, TimedExecutService>();
+
+            //格式化日期
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(options =>
+            {
+                options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

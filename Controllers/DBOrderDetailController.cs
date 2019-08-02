@@ -38,9 +38,6 @@ namespace ITDB.Controllers
                 var list = from a in periods
                            join c in _context.DBPeriods on a.DBPeriodsID equals c.ID
                            join d in _context.Goods on c.GoodsID equals d.ID
-                           //    join b in _context.OrderDetail on a.DBPeriodsID equals b.DBPeriodsID
-                           //    join e in _context.Order on b.OrderID equals e.ID
-
                            join u in _context.Users on c.LuckyUserID equals u.ID into us
                            from user in us.DefaultIfEmpty()
                            join n in (from a in _context.DBOrderDetails
@@ -53,8 +50,6 @@ namespace ITDB.Controllers
                                           tickets = g.Select(s => s.DBTicket)
                                       }) on new { DBPeriodsID = a.DBPeriodsID, LuckyUserID = user?.ID } equals new { DBPeriodsID = n.DBPeriodsID, LuckyUserID = n?.UserID } into n2
                            from luckyusertimes in n2.DefaultIfEmpty()
-                               //where e.UserID == a.UserID
-                               //orderby e.SubmitTime descending
                            select new
                            {
                                a.DBPeriodsID,
@@ -66,6 +61,7 @@ namespace ITDB.Controllers
                                a.Times,
                                c.NeedNum,
                                c.OverplusNum,
+                               c.Status,//0 进行中 1正在开奖中2开奖成功3开奖失败
                                a.tickets,
                                user?.UserName,
                                c.LuckyCode,
